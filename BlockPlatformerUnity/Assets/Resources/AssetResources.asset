@@ -56,11 +56,21 @@ MonoBehaviour:
         Id:
           Value: 1052914464296698747
       ResourcePath: DB/SimulationConfigAsset
+    - Path: Resources/DB/BlockPlatformerDB/player/Player|EntityPrototype
+      AssetRef:
+        Id:
+          Value: 1374555653445791952
+      ResourcePath: DB/BlockPlatformerDB/player/Player
     - Path: Resources/DB/Map1
       AssetRef:
         Id:
           Value: 1710471675203725834
       ResourcePath: DB/Map1
+    - Path: Resources/DB/BlockPlatformerDB/player/Player|EntityView
+      AssetRef:
+        Id:
+          Value: 1772019102450353352
+      ResourcePath: DB/BlockPlatformerDB/player/Player
     - Path: Resources/DB/MapAsset
       AssetRef:
         Id:

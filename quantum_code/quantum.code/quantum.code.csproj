@@ -75,6 +75,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BlockPlatformer\MovementSystem.cs" />
+    <Compile Include="BlockPlatformer\PlayerSpawnSystem.cs" />
     <Compile Include="CommandSetup.User.cs" />
     <Compile Include="Core\CodeGen.cs" />
     <Compile Include="CommandSetup.Legacy.cs" />
@@ -92,6 +93,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="BlockPlatformer\Input.qtn" />
+    <Content Include="BlockPlatformer\PlayerLink.qtn" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

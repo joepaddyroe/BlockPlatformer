@@ -21,7 +21,7 @@ MonoBehaviour:
       Id:
         Value: 0
     Scene: Level1
-    ScenePath: Assets/BlockPlatformerSpecific/scenes/levels/Level1.unity
+    ScenePath: Assets/BlockPlatformer/scenes/levels/Level1.unity
     SceneGuid: f6f07a6d813f50141b2e7e6aac166b41
     WorldSize: 256
     BucketsCount: 16
@@ -126,7 +126,8 @@ MonoBehaviour:
       MutableMode: 0
     MapEntities: []
   Prototypes:
-  - CharacterController2D: []
+  - PlayerLink: []
+    CharacterController2D: []
     CharacterController3D: []
     NavMeshAvoidanceAgent: []
     NavMeshAvoidanceObstacle: []
@@ -216,7 +217,8 @@ MonoBehaviour:
     View: []
     PhysicsJoints2D: []
     PhysicsJoints3D: []
-  - CharacterController2D: []
+  - PlayerLink: []
+    CharacterController2D: []
     CharacterController3D:
     - Config:
         Id:
