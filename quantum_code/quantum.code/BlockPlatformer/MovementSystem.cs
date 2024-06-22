@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using Photon.Deterministic;
 
 namespace Quantum.BlockPlatformer;
 
@@ -23,7 +24,7 @@ public unsafe class MovementSystem : SystemMainThreadFilter<MovementSystem.Filte
             filter.CharacterController->Jump(f);
         }
 
-        filter.CharacterController->Move(f, filter.Entity, input.Direction.XOY);
+        filter.CharacterController->Move(f, filter.Entity, new FPVector3(input.Direction.X, 0, 0));
     }
 }
 
