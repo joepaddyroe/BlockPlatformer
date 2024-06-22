@@ -13,6 +13,22 @@ public class LocalCameraFollow : MonoBehaviour
     [SerializeField] private Vector3 _followOffset;
     [SerializeField] private float _followSpeed;
 
+
+    private void Awake()
+    {
+        PlayerSetupManager.PlayerLoaded += HandlePlayerLoaded;
+    }
+
+    private void OnDestroy()
+    {
+        PlayerSetupManager.PlayerLoaded -= HandlePlayerLoaded;
+    }
+
+    private void HandlePlayerLoaded(GameObject player)
+    {
+        _targetTransform = player.transform;
+    }
+    
     private void Update()
     {
         if (!_targetTransform)

@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 264997070413364462}
   - component: {fileID: 264997070413364463}
   - component: {fileID: 264997070413364460}
+  - component: {fileID: 139369619687447688}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -308,10 +309,35 @@ MonoBehaviour:
   ErrorRotationTeleportDistance: 0.5
   OnEntityInstantiated:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 139369619687447688}
+        m_TargetAssemblyTypeName: PlayerEntity, Assembly-CSharp
+        m_MethodName: OnEntityInstantiated
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnEntityDestroyed:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &139369619687447688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 264997070413364461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e2ee5497f071a94b8d54e09d5f90e77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _entityView: {fileID: 264997070413364460}
 --- !u!114 &-2827143466682219679
 MonoBehaviour:
   m_ObjectHideFlags: 0
