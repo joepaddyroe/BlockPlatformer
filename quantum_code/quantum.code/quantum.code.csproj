@@ -74,6 +74,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BlockPlatformer\MovementSystem.cs" />
     <Compile Include="CommandSetup.User.cs" />
     <Compile Include="Core\CodeGen.cs" />
     <Compile Include="CommandSetup.Legacy.cs" />
