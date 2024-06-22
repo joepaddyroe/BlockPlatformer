@@ -12,8 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dd8e95ae0daaec4496511105240e8a3, type: 3}
   m_Name: AssetResources
   m_EditorClassIdentifier: 
-  AddressablesGroup:
-    _resources: []
   AssetBundlesGroup:
     _resources: []
   ResourcesGroup:
@@ -48,8 +46,23 @@ MonoBehaviour:
         Id:
           Value: 810189026489540597
       ResourcePath: DB/Map1_mesh
+    - Path: Resources/DB/MapAsset_mesh
+      AssetRef:
+        Id:
+          Value: 1001720238252197665
+      ResourcePath: DB/MapAsset_mesh
+    - Path: Resources/DB/SimulationConfigAsset
+      AssetRef:
+        Id:
+          Value: 1052914464296698747
+      ResourcePath: DB/SimulationConfigAsset
     - Path: Resources/DB/Map1
       AssetRef:
         Id:
           Value: 1710471675203725834
       ResourcePath: DB/Map1
+    - Path: Resources/DB/MapAsset
+      AssetRef:
+        Id:
+          Value: 4066027806857790520
+      ResourcePath: DB/MapAsset
