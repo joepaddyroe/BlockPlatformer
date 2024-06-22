@@ -1,4 +1,6 @@
-﻿namespace Quantum.BlockPlatformer;
+﻿using System.Diagnostics;
+
+namespace Quantum.BlockPlatformer;
 
 public unsafe class MovementSystem : SystemMainThreadFilter<MovementSystem.Filter>
 {
@@ -10,8 +12,15 @@ public unsafe class MovementSystem : SystemMainThreadFilter<MovementSystem.Filte
     
     public override void Update(Frame f, ref Filter filter)
     {
-        // note: pointer property access via -> instead of .
-        filter.CharacterController->Move(f, filter.Entity, default);
+        // gets the input for player 0
+        var input = *f.GetPlayerInput(0);
+
+        if (input.Jump.WasPressed)
+        {
+            filter.CharacterController->Jump(f);
+        }
+
+        filter.CharacterController->Move(f, filter.Entity, input.Direction.XOY);
     }
 }
 
