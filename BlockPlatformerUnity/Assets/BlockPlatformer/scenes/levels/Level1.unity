@@ -807,7 +807,6 @@ MonoBehaviour:
   - {fileID: 1438043597}
   MapEntityReferences:
   - {fileID: 1256297366}
-  - {fileID: 1786243245}
 --- !u!4 &1288358760
 Transform:
   m_ObjectHideFlags: 0
@@ -985,18 +984,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1786243245 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 264997070413364460, guid: fad07ef769c043a408d94b6035a80e7d,
-    type: 3}
-  m_PrefabInstance: {fileID: 264997068709696577}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0008c51fe3af00b4da5d44f02d9b3dff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1786243248 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 264997070413364465, guid: fad07ef769c043a408d94b6035a80e7d,
@@ -1145,7 +1132,7 @@ PrefabInstance:
     - target: {fileID: 264997070413364461, guid: fad07ef769c043a408d94b6035a80e7d,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 264997070413364465, guid: fad07ef769c043a408d94b6035a80e7d,
         type: 3}
