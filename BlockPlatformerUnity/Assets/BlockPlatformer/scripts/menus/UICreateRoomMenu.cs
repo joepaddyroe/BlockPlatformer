@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Photon.Realtime;
-using Quantum.Demo;
 using TMPro;
 using UnityEngine;
 
@@ -20,9 +19,6 @@ public class UICreateRoomMenu : MenuScreenBase
     private string _roomName = "";
     private int _currentMapSelectionIndex = -1;
     private MapAsset _currentlySelectedMapAsset;
-    
-    //private List<MapInfo> _mapInfo;
-    private List<UIRoomPlayer> _players = new List<UIRoomPlayer>();
     
     public void OnBackClicked()
     {
@@ -98,13 +94,15 @@ public class UICreateRoomMenu : MenuScreenBase
         enterRoomParams.RoomOptions.IsVisible = true;
         enterRoomParams.RoomOptions.MaxPlayers = ClientConnectionController.MAX_PLAYER_COUNT;
         enterRoomParams.RoomOptions.Plugins = new string[] { "QuantumPlugin" };
-        enterRoomParams.RoomOptions.CustomRoomPropertiesForLobby = new string[] { "C0" };
+        enterRoomParams.RoomOptions.CustomRoomPropertiesForLobby = new string[] { "C0", "MAP-NAME" };
         enterRoomParams.Lobby = new TypedLobby("customSqlLobby", LobbyType.SqlLobby);
         enterRoomParams.RoomOptions.CustomRoomProperties = new ExitGames.Client.Photon.Hashtable { 
             { "HIDE-ROOM", false }, 
-            { "MAP-GUID", defaultMapGuid }, 
-            { "C0", 0 }};
-
+            { "MAP-GUID", defaultMapGuid },
+            { "C0", 0 },
+            { "MAP-NAME", _currentlySelectedMapAsset.name },
+        };
+        
         Debug.Log("Creating a new room...");
 
         if (!_clientController.Client.OpCreateRoom(enterRoomParams))

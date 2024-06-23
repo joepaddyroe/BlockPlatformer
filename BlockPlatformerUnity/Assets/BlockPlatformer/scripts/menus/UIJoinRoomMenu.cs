@@ -90,13 +90,18 @@ public class UIJoinRoomMenu : MenuScreenBase
             GameObject roomDetailContainer = Instantiate(_roomDetailContainerPrefab, _roomsScrollContent, false);
             UIRoomDetailContainer detailContainer = roomDetailContainer.GetComponent<UIRoomDetailContainer>();
             detailContainer.SetRoomName(roomInfo.Name);
-            detailContainer.SetMapName("Fix This");
+            roomInfo.CustomProperties.TryGetValue("MAP-NAME", out object mapName);
+            detailContainer.SetMapName((string)mapName);
             detailContainer.SetPlayerCount(roomInfo.PlayerCount, roomInfo.MaxPlayers);
             roomDetailContainer.GetComponent<Button>().onClick.AddListener(() =>
             {
                 RoomClicked(rooms.IndexOf(roomInfo));
             });
             _roomDetailContainers.Add(detailContainer);
+            if (rooms.IndexOf(roomInfo) == _currentlySelectedRoomIndex && roomInfo.Equals(_currentSlectedRoomInfo))
+            {
+                detailContainer.SetSelected(true);
+            }
         }
     }
 
