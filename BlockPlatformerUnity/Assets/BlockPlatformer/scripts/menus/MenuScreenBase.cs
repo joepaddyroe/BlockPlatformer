@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UIStartMenu : MonoBehaviour
+public class MenuScreenBase : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -14,5 +14,15 @@ public class UIStartMenu : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void HidePanel()
+    {
+        gameObject.SetActive(false);
+    }
+    
+    public void ShowPanel()
+    {
+        gameObject.SetActive(true);
     }
 }
