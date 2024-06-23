@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Photon.Realtime;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIJoinRoomMenu : MenuScreenBase
 {
@@ -14,6 +15,9 @@ public class UIJoinRoomMenu : MenuScreenBase
     private List<RoomInfo> _roomInfoList = new List<RoomInfo>();
     private float _refreshRoomListTimer = 0;
     private bool _refreshingRoomData = false;
+    private int _currentlySelectedRoomIndex = -1;
+    private RoomInfo _currentSlectedRoomInfo;
+    
     public void OnBackClicked()
     {
         _uiMainMenu.OnBackToHostJoinClicked();
@@ -27,12 +31,18 @@ public class UIJoinRoomMenu : MenuScreenBase
             Debug.Log("Room info list is empty...");
             return;
         }
+
+        if (_currentSlectedRoomInfo == null)
+        {
+            Debug.Log("Curently selected room info list is null...");
+            return;
+        }
         
         var joinRoomParams = new EnterRoomParams();
-        joinRoomParams.RoomName = _roomInfoList[0].Name; //  this needs o be controlled by selection!!! - handle this as an index onclick of menu or something
+        joinRoomParams.RoomName = _currentSlectedRoomInfo.Name; //  this needs o be controlled by selection!!! - handle this as an index onclick of menu or something
         //joinRoomParams.Lobby = new TypedLobby("customSqlLobby", LobbyType.SqlLobby);
         
-        Debug.Log("Attempting to join room...");
+        Debug.Log("Attempting to join room... " + _currentSlectedRoomInfo.Name);
 
         _refreshingRoomData = false;
         
@@ -72,7 +82,7 @@ public class UIJoinRoomMenu : MenuScreenBase
         {
             Destroy(detail.gameObject);
         }
-
+        
         foreach (RoomInfo roomInfo in rooms)
         {
             GameObject roomDetailContainer = Instantiate(_roomDetailContainerPrefab, _roomsScrollContent, false);
@@ -80,7 +90,24 @@ public class UIJoinRoomMenu : MenuScreenBase
             detailContainer.SetRoomName(roomInfo.Name);
             detailContainer.SetMapName("Fix This");
             detailContainer.SetPlayerCount(roomInfo.PlayerCount, roomInfo.MaxPlayers);
+            roomDetailContainer.GetComponent<Button>().onClick.AddListener(() =>
+            {
+                RoomClicked(rooms.IndexOf(roomInfo));
+            });
         }
+    }
+
+    public void RoomClicked(int index)
+    {
+        Debug.Log(index);
+        if (_roomInfoList.Count < 1)
+        {
+            Debug.Log("Room info list currently empty...");
+            return;
+        }
+
+        _currentSlectedRoomInfo = _roomInfoList[index];
+        _currentlySelectedRoomIndex = index;
     }
 }
 
