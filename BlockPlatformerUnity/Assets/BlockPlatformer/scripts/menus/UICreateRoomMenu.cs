@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Photon.Realtime;
 using Quantum.Demo;
+using TMPro;
 using UnityEngine;
 
 public class UICreateRoomMenu : MenuScreenBase
@@ -10,7 +11,11 @@ public class UICreateRoomMenu : MenuScreenBase
     [SerializeField] private UIMainMenu _uiMainMenu;
     [SerializeField] private ClientConnectionController _clientController;
     [SerializeField] private List<MapAsset> _mapAssets = new List<MapAsset>();
+    [SerializeField] private TMP_InputField _roomNameInputField;
+    [SerializeField] private GameObject _createRoomButton;
     
+    private bool _roomNameEntered = false;
+    private string _roomName = "";
     
     //private List<MapInfo> _mapInfo;
     private List<UIRoomPlayer> _players = new List<UIRoomPlayer>();
@@ -18,6 +23,28 @@ public class UICreateRoomMenu : MenuScreenBase
     public void OnBackClicked()
     {
         _uiMainMenu.OnBackToHostJoinClicked();
+    }
+    
+    public void OnEnter()
+    {
+        if (_roomName == "")
+        {
+            _roomName = _clientController.CurrentPlayerName + "'s Room";
+        }
+        _roomNameInputField.text = _roomName;
+        
+        _roomNameInputField.onValueChanged.AddListener(OnRoomNameInputChanged);
+    }
+    
+    private void OnRoomNameInputChanged(string newValue)
+    {
+        _roomName = newValue;
+    }
+
+    void Update()
+    {
+        _roomNameEntered = _roomName != "";
+        _createRoomButton.SetActive(_roomNameEntered);
     }
 
     public void OnHostClicked()
@@ -32,7 +59,7 @@ public class UICreateRoomMenu : MenuScreenBase
         
         var enterRoomParams = new EnterRoomParams();
         enterRoomParams.RoomOptions = new RoomOptions();
-        enterRoomParams.RoomName = "Joe" + "'s Room"; // need to grab name from stord value somewhere - also need to input name somewhere, probably on opening screen
+        enterRoomParams.RoomName = _roomName;
         enterRoomParams.RoomOptions.IsVisible = true;
         enterRoomParams.RoomOptions.MaxPlayers = 2; // this should be a variable set somewhere
         enterRoomParams.RoomOptions.Plugins = new string[] { "QuantumPlugin" };

@@ -72,6 +72,7 @@ public class UIMainMenu : MenuScreenBase
     {
         _currentPanel.HidePanel();
         _hostPanel.ShowPanel();
+        (_hostPanel as UICreateRoomMenu)?.OnEnter();
         _currentPanel = _hostPanel;
     }
     
