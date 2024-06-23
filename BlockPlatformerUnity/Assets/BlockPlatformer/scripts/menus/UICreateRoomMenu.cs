@@ -77,5 +77,7 @@ public class UICreateRoomMenu : MenuScreenBase
             _clientController.Client.Disconnect();
             Debug.LogError($"Failed to send create room operation");
         }
+
+        _clientController.StartHostingClicked();
     }
 }

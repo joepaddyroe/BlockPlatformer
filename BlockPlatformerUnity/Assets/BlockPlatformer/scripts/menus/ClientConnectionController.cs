@@ -34,7 +34,7 @@ public class ClientConnectionController : MonoBehaviour, IConnectionCallbacks, I
     }
 
 
-    // public accesors
+    // public accessors
 
     public void SetPlayerName(string newName)
     {
@@ -50,8 +50,15 @@ public class ClientConnectionController : MonoBehaviour, IConnectionCallbacks, I
             Debug.LogError($"Failed to send get rooms list operation.");
         }
     }
-    
-    
+
+    public void StartHostingClicked()
+    {
+        // if (Client != null && Client.InRoom && Client.LocalPlayer.IsMasterClient && Client.CurrentRoom.IsOpen) {
+        //     if (!Client.OpRaiseEvent((byte)PhotonEventCode.StartGame, null, new RaiseEventOptions {Receivers = ReceiverGroup.All}, SendOptions.SendReliable)) {
+        //         Debug.LogError($"Failed to send start game event");
+        //     }
+        // }
+    }
     
     
     //IConnectionCallbacks
@@ -65,10 +72,6 @@ public class ClientConnectionController : MonoBehaviour, IConnectionCallbacks, I
     {
         Debug.Log("CONNECTED TO MASTER!!!!!!!!");
         _uiMainMenu.GoToHostOrJoinPanel();
-        
-        // TypedLobby sqlLobby = new TypedLobby("customSqlLobby", LobbyType.SqlLobby);
-        // bool check = Client.OpGetGameList(sqlLobby, "C0 = 0");
-        // Debug.Log("Found sql lobby: " + check);
     }
 
     public void OnDisconnected(DisconnectCause cause)
@@ -115,6 +118,13 @@ public class ClientConnectionController : MonoBehaviour, IConnectionCallbacks, I
         Debug.Log("Joined the room!!!");
         
         if (Client != null && Client.InRoom && Client.LocalPlayer.IsMasterClient && Client.CurrentRoom.IsOpen) {
+            if (!Client.OpRaiseEvent((byte)PhotonEventCode.StartGame, null, new RaiseEventOptions {Receivers = ReceiverGroup.All}, SendOptions.SendReliable)) {
+                Debug.LogError($"Failed to send start game event");
+            }
+        } 
+        else if (Client != null && Client.InRoom && !Client.LocalPlayer.IsMasterClient && Client.CurrentRoom.IsOpen)
+        {
+            Debug.Log("Not master client, do something else here.....");
             if (!Client.OpRaiseEvent((byte)PhotonEventCode.StartGame, null, new RaiseEventOptions {Receivers = ReceiverGroup.All}, SendOptions.SendReliable)) {
                 Debug.LogError($"Failed to send start game event");
             }

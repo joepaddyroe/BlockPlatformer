@@ -1,14 +1,14 @@
-﻿using Quantum;
+using Quantum;
 using UnityEngine;
 
-public class CustomCallbacks : QuantumCallbacks
+public class QuantumCallbackHandler : QuantumCallbacks
 {
     [SerializeField] private RuntimePlayer _runtimePlayer;
     public override void OnGameStart(Quantum.QuantumGame game) {
         // paused on Start means waiting for Snapshot
         if (game.Session.IsPaused) return;
 
-            foreach (var lp in game.GetLocalPlayers()) {
+        foreach (var lp in game.GetLocalPlayers()) {
             Debug.Log("CustomCallbacks - sending player: " + lp);
             game.SendPlayerData(lp, _runtimePlayer);
         }
@@ -23,5 +23,4 @@ public class CustomCallbacks : QuantumCallbacks
             game.SendPlayerData(lp, _runtimePlayer);
         }
     }
-    
 }
