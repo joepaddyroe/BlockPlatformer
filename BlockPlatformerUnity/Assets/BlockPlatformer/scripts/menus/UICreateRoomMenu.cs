@@ -54,7 +54,7 @@ public class UICreateRoomMenu : MenuScreenBase
 
         if (_mapAssets.Count > 0)
         {
-            defaultMapGuid = _mapAssets[0].AssetObject.Guid.Value;
+            defaultMapGuid = _mapAssets[1].AssetObject.Guid.Value;
         }
         
         var enterRoomParams = new EnterRoomParams();

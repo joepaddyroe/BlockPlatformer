@@ -10,7 +10,8 @@ public class UIMainMenu : MenuScreenBase
     [SerializeField] private MenuScreenBase _hostOrJoinPanel;
     [SerializeField] private MenuScreenBase _hostPanel;
     [SerializeField] private MenuScreenBase _joinPanel;
-
+    [SerializeField] private MenuScreenBase _gamePanel;
+    
     private MenuScreenBase _currentPanel;
     
     // Start is called before the first frame update
@@ -21,6 +22,7 @@ public class UIMainMenu : MenuScreenBase
         _hostOrJoinPanel.HidePanel();
         _hostPanel.HidePanel();
         _joinPanel.HidePanel();
+        _gamePanel.HidePanel();
         _currentPanel = _connectPanel;
     }
 
@@ -83,6 +85,13 @@ public class UIMainMenu : MenuScreenBase
         _hostPanel.ShowPanel();
         (_hostPanel as UICreateRoomMenu)?.OnEnter();
         _currentPanel = _hostPanel;
+    }
+    
+    public void GoToGamePanel()
+    {
+        _currentPanel.HidePanel();
+        _gamePanel.ShowPanel();
+        _currentPanel = _gamePanel;
     }
     
     public void GoToJoinPanel()
