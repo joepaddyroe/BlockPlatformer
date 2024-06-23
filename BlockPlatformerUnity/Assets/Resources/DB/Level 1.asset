@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6a366507de6e4aa44aea490bd69adace, type: 3}
-  m_Name: MapAsset
+  m_Name: Level 1
   m_EditorClassIdentifier: 
   Settings:
     Identifier:
-      Path: Resources/DB/MapAsset
+      Path: Resources/DB/Level 1
       Guid:
         Value: 4066027806857790520
     UserAsset:
@@ -31,7 +31,7 @@ MonoBehaviour:
     TriangleMeshCellSize: 4
     StaticColliders3DTrianglesData:
       Id:
-        Value: 1001720238252197665
+        Value: 852700006262833963
     OptionalTriangleMetadataSerializationEnabled: 1
     SerializeTrianglesMetadata: 0
     StaticColliders3DTrianglesBinaryFile: 

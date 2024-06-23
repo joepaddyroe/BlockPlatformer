@@ -41,11 +41,21 @@ MonoBehaviour:
         Id:
           Value: 5
       ResourcePath: DB/Configs/SimulationConfig
+    - Path: Resources/DB/Level 2
+      AssetRef:
+        Id:
+          Value: 73399371826418620
+      ResourcePath: DB/Level 2
     - Path: Resources/DB/Map1_mesh
       AssetRef:
         Id:
           Value: 810189026489540597
       ResourcePath: DB/Map1_mesh
+    - Path: Resources/DB/Level 1_mesh
+      AssetRef:
+        Id:
+          Value: 852700006262833963
+      ResourcePath: DB/Level 1_mesh
     - Path: Resources/DB/MapAsset_mesh
       AssetRef:
         Id:
@@ -71,8 +81,13 @@ MonoBehaviour:
         Id:
           Value: 1772019102450353352
       ResourcePath: DB/BlockPlatformerDB/player/Player
-    - Path: Resources/DB/MapAsset
+    - Path: Resources/DB/Level 2_mesh
+      AssetRef:
+        Id:
+          Value: 3649937831932211046
+      ResourcePath: DB/Level 2_mesh
+    - Path: Resources/DB/Level 1
       AssetRef:
         Id:
           Value: 4066027806857790520
-      ResourcePath: DB/MapAsset
+      ResourcePath: DB/Level 1

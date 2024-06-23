@@ -13,6 +13,7 @@ public class UIJoinRoomMenu : MenuScreenBase
     [SerializeField] private float _refreshRoomListInterval = 2f;
 
     private List<RoomInfo> _roomInfoList = new List<RoomInfo>();
+    private List<UIRoomDetailContainer> _roomDetailContainers = new List<UIRoomDetailContainer>();
     private float _refreshRoomListTimer = 0;
     private bool _refreshingRoomData = false;
     private int _currentlySelectedRoomIndex = -1;
@@ -76,6 +77,7 @@ public class UIJoinRoomMenu : MenuScreenBase
     public void RoomListUpdated(List<RoomInfo> rooms)
     {
         _roomInfoList = rooms;
+        _roomDetailContainers = new List<UIRoomDetailContainer>();
         
         // first clear the existing room details if any
         foreach (Transform detail in _roomsScrollContent)
@@ -94,6 +96,7 @@ public class UIJoinRoomMenu : MenuScreenBase
             {
                 RoomClicked(rooms.IndexOf(roomInfo));
             });
+            _roomDetailContainers.Add(detailContainer);
         }
     }
 
@@ -106,6 +109,11 @@ public class UIJoinRoomMenu : MenuScreenBase
             return;
         }
 
+        foreach (var roomDetailContainer in _roomDetailContainers)
+        {
+            roomDetailContainer.SetSelected(false);
+        }
+        _roomDetailContainers[index].SetSelected(true);
         _currentSlectedRoomInfo = _roomInfoList[index];
         _currentlySelectedRoomIndex = index;
     }

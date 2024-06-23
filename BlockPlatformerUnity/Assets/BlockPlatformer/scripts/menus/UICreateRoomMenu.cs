@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Photon.Realtime;
@@ -13,9 +14,12 @@ public class UICreateRoomMenu : MenuScreenBase
     [SerializeField] private List<MapAsset> _mapAssets = new List<MapAsset>();
     [SerializeField] private TMP_InputField _roomNameInputField;
     [SerializeField] private GameObject _createRoomButton;
+    [SerializeField] private TMP_Dropdown _selectMapDropDown;
     
     private bool _roomNameEntered = false;
     private string _roomName = "";
+    private int _currentMapSelectionIndex = -1;
+    private MapAsset _currentlySelectedMapAsset;
     
     //private List<MapInfo> _mapInfo;
     private List<UIRoomPlayer> _players = new List<UIRoomPlayer>();
@@ -34,11 +38,40 @@ public class UICreateRoomMenu : MenuScreenBase
         _roomNameInputField.text = _roomName;
         
         _roomNameInputField.onValueChanged.AddListener(OnRoomNameInputChanged);
+        SetupMapOptions();
+        _selectMapDropDown.onValueChanged.AddListener(OnMapSelected);
     }
-    
+
+    private void OnDestroy()
+    {
+        _roomNameInputField.onValueChanged.RemoveListener(OnRoomNameInputChanged);
+        _selectMapDropDown.onValueChanged.RemoveListener(OnMapSelected);
+    }
+
     private void OnRoomNameInputChanged(string newValue)
     {
         _roomName = newValue;
+    }
+    
+    private void OnMapSelected(int selectionIndex)
+    {
+        _currentMapSelectionIndex = selectionIndex;
+        _currentlySelectedMapAsset = _mapAssets[selectionIndex];
+    }
+
+    private void SetupMapOptions()
+    {
+        _currentlySelectedMapAsset = _mapAssets[0];
+        
+        _selectMapDropDown.options = new List<TMP_Dropdown.OptionData>();
+        foreach (MapAsset mapAsset in _mapAssets)
+        {
+            TMP_Dropdown.OptionData option = new TMP_Dropdown.OptionData();
+            option.text = mapAsset.name;
+            _selectMapDropDown.options.Add(option);
+        }
+        _selectMapDropDown.value = 0;
+        _selectMapDropDown.RefreshShownValue();
     }
 
     void Update()
@@ -49,13 +82,15 @@ public class UICreateRoomMenu : MenuScreenBase
 
     public void OnHostClicked()
     {
-
         var defaultMapGuid = 0L;
 
-        if (_mapAssets.Count > 0)
+        if (_mapAssets.Count < 1)
         {
-            defaultMapGuid = _mapAssets[1].AssetObject.Guid.Value;
+            Debug.Log("No map assets to load.....");
+            return;
         }
+        
+        defaultMapGuid = _currentlySelectedMapAsset.AssetObject.Guid.Value;
         
         var enterRoomParams = new EnterRoomParams();
         enterRoomParams.RoomOptions = new RoomOptions();
@@ -80,4 +115,5 @@ public class UICreateRoomMenu : MenuScreenBase
 
         _clientController.StartHostingClicked();
     }
+    
 }
