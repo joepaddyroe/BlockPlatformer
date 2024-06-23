@@ -10,6 +10,5 @@ public class UIGamePanel : MenuScreenBase
     public void OnDisconnectClicked()
     {
         _clientController.Client.Disconnect();
-        _uiMainMenu.GoToConnectPanel();
     }
 }

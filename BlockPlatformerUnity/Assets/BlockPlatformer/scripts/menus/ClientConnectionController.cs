@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using ExitGames.Client.Photon;
+using Photon.Deterministic;
 using Photon.Realtime;
 using Quantum;
 using Quantum.Demo;
@@ -73,10 +74,13 @@ public class ClientConnectionController : MonoBehaviour, IConnectionCallbacks, I
         Debug.Log("CONNECTED TO MASTER!!!!!!!!");
         _uiMainMenu.GoToHostOrJoinPanel();
     }
+    
+    public void OnDisconnected(DisconnectCause cause) {
+        Debug.Log($"Disconnected: {cause}");
 
-    public void OnDisconnected(DisconnectCause cause)
-    {
-        throw new System.NotImplementedException();
+        QuantumRunner.ShutdownAll(true);
+
+        _uiMainMenu.GoToConnectPanel();
     }
 
     public void OnRegionListReceived(RegionHandler regionHandler)
@@ -147,7 +151,7 @@ public class ClientConnectionController : MonoBehaviour, IConnectionCallbacks, I
 
     public void OnLeftRoom()
     {
-        throw new System.NotImplementedException();
+        Debug.Log("Leaving room now....");
     }
     
     
