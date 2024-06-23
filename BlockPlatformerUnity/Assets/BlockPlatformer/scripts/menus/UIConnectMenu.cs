@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class UIConnectMenu : MenuScreenBase
@@ -7,20 +8,37 @@ public class UIConnectMenu : MenuScreenBase
 
     [SerializeField] private UIMainMenu _uiMainMenu;
     [SerializeField] private ClientConnectionController _clientController;
+    [SerializeField] private TMP_InputField _nameInputField;
+    [SerializeField] private GameObject _connectButton;
     
-
-    // Update is called once per frame
+    private bool _nameEntered = false;
+    
+    void Start()
+    {
+        _nameInputField.onValueChanged.AddListener(OnNameInputChanged);
+    }
+    
     void Update()
     {
         _clientController.Client?.Service();
+
+        _nameEntered = _nameInputField.text != "";
+        
+        _connectButton.SetActive(_nameEntered);
     }
     
     private void OnDestroy() {
         if (_clientController.Client != null && _clientController.Client.IsConnected == true) {
             _clientController.Client.Disconnect();
         }
+        
+        _nameInputField.onValueChanged.RemoveListener(OnNameInputChanged);
     }
 
+    private void OnNameInputChanged(string newValue)
+    {
+        _clientController.SetPlayerName(newValue);
+    }
 
     public void OnConnectClicked()
     {

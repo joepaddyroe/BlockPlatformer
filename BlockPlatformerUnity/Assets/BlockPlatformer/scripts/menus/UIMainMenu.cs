@@ -24,9 +24,6 @@ public class UIMainMenu : MenuScreenBase
         
     }
     
-    
-    
-    
     public void OnConnectionStarted()
     {
         GoToConnectingPanel();
@@ -82,6 +79,7 @@ public class UIMainMenu : MenuScreenBase
     {
         _currentPanel.HidePanel();
         _joinPanel.ShowPanel();
+        (_joinPanel as UIJoinRoomMenu)?.OnEnter();
         _currentPanel = _joinPanel;
     }
 }
