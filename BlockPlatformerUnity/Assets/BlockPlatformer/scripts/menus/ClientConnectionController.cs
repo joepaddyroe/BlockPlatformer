@@ -223,6 +223,8 @@ public class ClientConnectionController : MonoBehaviour, IConnectionCallbacks, I
         
         config.Map.Id = mapGuid;
         
+        Debug.Log("Starting Game With Max Players: " + Client.CurrentRoom.MaxPlayers);
+        
         var param = new QuantumRunner.StartParameters {
             RuntimeConfig             = config,
             DeterministicConfig       = DeterministicSessionConfigAsset.Instance.Config,
@@ -243,7 +245,7 @@ public class ClientConnectionController : MonoBehaviour, IConnectionCallbacks, I
         var clientId = ClientIdProvider.CreateClientId(_idProvider, Client);
         QuantumRunner.StartGame(clientId, param);
 
-        //ReconnectInformation.Refresh(Client, TimeSpan.FromMinutes(1));
+        ReconnectInformation.Refresh(Client, TimeSpan.FromMinutes(1));
     }
     
     
