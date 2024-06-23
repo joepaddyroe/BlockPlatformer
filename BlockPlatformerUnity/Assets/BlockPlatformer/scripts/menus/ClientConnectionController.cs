@@ -7,7 +7,8 @@ public class ClientConnectionController : MonoBehaviour, IConnectionCallbacks, I
 {
 
     [SerializeField] private UIMainMenu _uiMainMenu;
-
+    [SerializeField] public static int MAX_PLAYER_COUNT = 2;
+    
     private string _currentPlayerName;
 
     public string CurrentPlayerName => _currentPlayerName;
@@ -140,6 +141,7 @@ public class ClientConnectionController : MonoBehaviour, IConnectionCallbacks, I
         {
             Debug.Log("Room: " + room.Name + ", Max Players: " + room.MaxPlayers);
         }
+        _uiMainMenu.RoomListUpdated(roomList);
     }
 
     public void OnLobbyStatisticsUpdate(List<TypedLobbyInfo> lobbyStatistics)

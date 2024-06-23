@@ -61,7 +61,7 @@ public class UICreateRoomMenu : MenuScreenBase
         enterRoomParams.RoomOptions = new RoomOptions();
         enterRoomParams.RoomName = _roomName;
         enterRoomParams.RoomOptions.IsVisible = true;
-        enterRoomParams.RoomOptions.MaxPlayers = 2; // this should be a variable set somewhere
+        enterRoomParams.RoomOptions.MaxPlayers = ClientConnectionController.MAX_PLAYER_COUNT;
         enterRoomParams.RoomOptions.Plugins = new string[] { "QuantumPlugin" };
         enterRoomParams.RoomOptions.CustomRoomPropertiesForLobby = new string[] { "C0" };
         enterRoomParams.Lobby = new TypedLobby("customSqlLobby", LobbyType.SqlLobby);

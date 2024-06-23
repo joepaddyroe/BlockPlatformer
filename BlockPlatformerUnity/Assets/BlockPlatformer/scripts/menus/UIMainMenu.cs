@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Realtime;
 using UnityEngine;
 
 public class UIMainMenu : MenuScreenBase
@@ -15,6 +16,11 @@ public class UIMainMenu : MenuScreenBase
     // Start is called before the first frame update
     void Start()
     {
+        _connectPanel.ShowPanel();
+        _connectingPanel.HidePanel();
+        _hostOrJoinPanel.HidePanel();
+        _hostPanel.HidePanel();
+        _joinPanel.HidePanel();
         _currentPanel = _connectPanel;
     }
 
@@ -43,8 +49,11 @@ public class UIMainMenu : MenuScreenBase
     {
         GoToHostOrJoinPanel();
     }
-    
-    
+
+    public void RoomListUpdated(List<RoomInfo> rooms)
+    {
+        (_joinPanel as UIJoinRoomMenu)?.RoomListUpdated(rooms);
+    }
     
 
     public void GoToConnectPanel()
