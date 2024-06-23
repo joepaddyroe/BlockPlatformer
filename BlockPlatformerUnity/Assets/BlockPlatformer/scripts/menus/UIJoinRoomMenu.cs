@@ -9,6 +9,9 @@ public class UIJoinRoomMenu : MenuScreenBase
     [SerializeField] private ClientConnectionController _clientController;
     [SerializeField] private Transform _roomsScrollContent;
     [SerializeField] private GameObject _roomDetailContainerPrefab;
+    [SerializeField] private float _refreshRoomListInterval = 2f;
+
+    private float _refreshRoomListTimer = 0;
     public void OnBackClicked()
     {
         _uiMainMenu.OnBackToHostJoinClicked();
@@ -17,6 +20,17 @@ public class UIJoinRoomMenu : MenuScreenBase
     public void OnEnter()
     {
         _clientController.GetRoomList();
+    }
+
+    void Update()
+    {
+        if (_refreshRoomListTimer >= _refreshRoomListInterval)
+        {
+            _refreshRoomListTimer = 0;
+            _clientController.GetRoomList();
+        }
+
+        _refreshRoomListTimer += Time.deltaTime;
     }
 
     public void RoomListUpdated(List<RoomInfo> rooms)
